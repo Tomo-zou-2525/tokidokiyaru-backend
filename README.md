@@ -1,6 +1,6 @@
 # tokidokiyaru-backend
 
-# ローカル開発環境
+# 開発環境
 
 ## 概要
 [VSCode Remote Container](https://code.visualstudio.com/docs/remote/containers)を利用している。
@@ -14,7 +14,7 @@
 - [Docker Descktop](https://www.docker.com/products/docker-desktop/)
 - [VSCode](https://azure.microsoft.com/ja-jp/products/visual-studio-code)
 
-## ローカル環境構築手順
+## 構築手順
 - Docker Descktopを起動する
 - VSCodeのDev Containers(`ms-vscode-remote.remote-containers` )拡張機能をインストールする
 - `⌘ + shift + p` で `Dev Containers: Open Folder in Container...` を選択、カレントディレクトリでDev Containersを立ち上げる
