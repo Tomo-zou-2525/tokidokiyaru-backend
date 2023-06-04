@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
 	"name": "Python 3 & PostgreSQL",
-	"dockerComposeFile": "docker-compose.yml",
+	"dockerComposeFile": "compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
@@ -24,7 +24,10 @@
 		"vscode": {
 			"extensions": [
 				"timonwong.shellcheck",
-				"exiasr.hadolint"
+				"exiasr.hadolint",
+				"ms-azuretools.vscode-docker",
+				"GitHub.copilot",
+				"GitHub.vscode-github-actions"
 			],
 			"settings": {
 				"hadolint.cliOptions": ["--no-color"],
