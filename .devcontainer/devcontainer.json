@@ -5,12 +5,12 @@
 	"dockerComposeFile": "compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/dhoeric/features/hadolint:1": {},
 		"ghcr.io/lukewiwa/features/shellcheck:0": {}
-	},
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	},	
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
@@ -38,7 +38,23 @@
 			],
 			"settings": {
 				"hadolint.cliOptions": ["--no-color"],
-				"hadolint.hadolintPath": "/usr/local/bin/hadolint"
+				"hadolint.hadolintPath": "/usr/local/bin/hadolint",
+				"python.languageServer": "Pylance",
+				"python.analysis.diagnosticMode": "workspace",
+				"python.analysis.typeCheckingMode": "basic",
+				"python.linting.lintOnSave": true,
+				"python.linting.pylintEnabled": false,
+				"python.linting.flake8Enabled": true,
+				"python.formatting.provider": "autopep8",
+				"autoDocstring.docstringFormat": "google",
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				},
+				"editor.rulers": [
+					150
+				],
+				"files.insertFinalNewline": true
 			}
 		}
 	}
