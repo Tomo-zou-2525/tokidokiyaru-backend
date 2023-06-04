@@ -27,7 +27,14 @@
 				"exiasr.hadolint",
 				"ms-azuretools.vscode-docker",
 				"GitHub.copilot",
-				"GitHub.vscode-github-actions"
+				"GitHub.vscode-github-actions",
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"ms-python.vscode-pylance",
+				"ms-python.isort",
+				"Gruntfuggly.todo-tree",
+				"yzhang.markdown-all-in-one",
+				"usernamehw.errorlens"
 			],
 			"settings": {
 				"hadolint.cliOptions": ["--no-color"],
