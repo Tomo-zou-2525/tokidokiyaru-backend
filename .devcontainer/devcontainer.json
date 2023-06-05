@@ -10,7 +10,7 @@
 	"features": {
 		"ghcr.io/dhoeric/features/hadolint:1": {},
 		"ghcr.io/lukewiwa/features/shellcheck:0": {}
-	},	
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
@@ -28,6 +28,7 @@
 				"ms-azuretools.vscode-docker",
 				"GitHub.copilot",
 				"GitHub.vscode-github-actions",
+				"donjayamanne.githistory",
 				"ms-python.python",
 				"njpwerner.autodocstring",
 				"ms-python.vscode-pylance",
