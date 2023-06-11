@@ -8,7 +8,6 @@
 - コンテナ内で開発できるためローカルのプロセスやネームスペースから切り離した環境で開発が可能
 - またローカル環境はVSCodeとDockerが入っていればそれ以外のもののインストールは不要
 - リンター、フォーマッター、VSCodeの拡張機能の設定がgitで管理されるため共有が可能
-- 等々
 
 ## 必要なもの
 - [Docker Descktop](https://www.docker.com/products/docker-desktop/)
