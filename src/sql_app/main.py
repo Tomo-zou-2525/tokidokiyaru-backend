@@ -51,17 +51,17 @@ def read_run_dates(
 
 @app.post("/users", response_model=schemas.User)
 def create_user(
-        user: schemas.User, db: Session = Depends(get_db)):
+        user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db=db, user=user)
 
 
 @app.post("/tasks", response_model=schemas.Task)
 def create_task(
-        task: schemas.Task, db: Session = Depends(get_db)):
+        task: schemas.TaskCreate, db: Session = Depends(get_db)):
     return crud.create_task(db=db, task=task)
 
 
 @app.post("/rundates", response_model=schemas.RunDate)
 def create_run_date(
-        run_date: schemas.RunDate, db: Session = Depends(get_db)):
+        run_date: schemas.RunDateCreate, db: Session = Depends(get_db)):
     return crud.create_run_date(db=db, run_date=run_date)

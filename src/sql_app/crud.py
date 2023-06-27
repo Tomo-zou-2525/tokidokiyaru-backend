@@ -18,7 +18,7 @@ def get_run_dates(db: Session, skip: int = 0, limit: int = 100):
 # Create
 
 
-def create_user(db: Session, user: schemas.User):
+def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.User(
         name=user.name,
         email=user.email,
@@ -30,7 +30,7 @@ def create_user(db: Session, user: schemas.User):
     return db_user
 
 
-def create_task(db: Session, task: schemas.Task):
+def create_task(db: Session, task: schemas.TaskCreate):
     db_task = models.Task(
         user_id=task.user_id,
         name=task.name,
@@ -42,7 +42,7 @@ def create_task(db: Session, task: schemas.Task):
     return db_task
 
 
-def create_run_date(db: Session, run_date: schemas.RunDate):
+def create_run_date(db: Session, run_date: schemas.RunDateCreate):
     db_run_date = models.RunDate(
         task_id=run_date.task_id,
         date=run_date.date
