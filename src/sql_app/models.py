@@ -15,7 +15,7 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), index=True)
     name = Column(String, index=True)
-    order = Column(Integer, index=True)
+    order = Column(Integer, unique=True, index=True)
 
 
 class RunDate(Base):
