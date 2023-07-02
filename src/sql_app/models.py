@@ -7,19 +7,19 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
+    hashed_password = Column(String, index=True)
 
 
 class Task(Base):
     __tablename__ = "tasks"
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), index=True)
     name = Column(String, index=True)
-    order = Column(Integer)
+    order = Column(Integer, index=True)
 
 
 class RunDate(Base):
     __tablename__ = "rundates"
     id = Column(Integer, primary_key=True, index=True)
-    task_id = Column(Integer, ForeignKey("tasks.id"))
-    date = Column(DateTime)
+    task_id = Column(Integer, ForeignKey("tasks.id"), index=True)
+    date = Column(DateTime, index=True)
