@@ -35,7 +35,8 @@
 				"ms-python.isort",
 				"Gruntfuggly.todo-tree",
 				"yzhang.markdown-all-in-one",
-				"usernamehw.errorlens"
+				"usernamehw.errorlens",
+				"ms-python.flake8"
 			],
 			"settings": {
 				"hadolint.cliOptions": ["--no-color"],
