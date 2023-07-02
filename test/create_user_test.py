@@ -25,4 +25,4 @@ if response.status_code == 200:
     print(response.json())
 else:
     print("リクエストに失敗しました。ステータスコード:", response.status_code)
-    print(response.text())
+    print(response.text)
