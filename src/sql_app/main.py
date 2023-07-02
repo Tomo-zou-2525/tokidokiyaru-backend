@@ -1,10 +1,10 @@
 from typing import List
 
+import crud
+import schemas
+from database import Base, engine, get_db
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
-
-from . import crud, schemas
-from .database import Base, engine, get_db
 
 Base.metadata.create_all(bind=engine)
 
