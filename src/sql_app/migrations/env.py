@@ -1,7 +1,8 @@
 from logging.config import fileConfig
 
+import models
 from alembic import context
-from database import SQLALCHEMY_DATABASE_URL, Base
+from database import SQLALCHEMY_DATABASE_URL
 from sqlalchemy import engine_from_config, pool
 
 # this is the Alembic Config object, which provides
@@ -16,7 +17,7 @@ if config.config_file_name is not None:
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
-target_metadata = Base.metadata
+target_metadata = models.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
