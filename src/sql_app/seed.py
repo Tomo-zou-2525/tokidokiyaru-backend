@@ -14,17 +14,17 @@ def seed():
             id=1,
             name="user1",
             email="user1@example.com",
-            hashed_password=hashlib.sha256(b"user1").hexdigest()),
+            password=hashlib.sha256(b"user1").hexdigest()),
         User(
             id=2,
             name="user2",
             email="user2@user2.com",
-            hashed_password=hashlib.sha256(b"user2").hexdigest()),
+            password=hashlib.sha256(b"user2").hexdigest()),
         User(
             id=3,
             name="user3",
             email="user3@user3.com",
-            hashed_password=hashlib.sha256(b"user3").hexdigest()),
+            password=hashlib.sha256(b"user3").hexdigest()),
     ]
     db.add_all(users)
     db.commit()
