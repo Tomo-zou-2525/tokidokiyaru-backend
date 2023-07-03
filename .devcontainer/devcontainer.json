@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
 	"name": "Python 3 & PostgreSQL",
-	"dockerComposeFile": "compose.yaml",
+	"dockerComposeFile": "../compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
@@ -35,7 +35,8 @@
 				"ms-python.isort",
 				"Gruntfuggly.todo-tree",
 				"yzhang.markdown-all-in-one",
-				"usernamehw.errorlens"
+				"usernamehw.errorlens",
+				"ms-python.flake8"
 			],
 			"settings": {
 				"hadolint.cliOptions": ["--no-color"],
