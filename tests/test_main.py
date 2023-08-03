@@ -1,8 +1,10 @@
+import random
+
 from fastapi.testclient import TestClient
 
-from src.sql_app.main import app
+from src.sql_app import main, schemas
 
-client = TestClient(app)
+client = TestClient(main.app)
 
 
 def test_sample():
@@ -26,3 +28,41 @@ def test_read_tasks():
 def test_read_run_dates():
     response = client.get("/rundates")
     assert response.status_code == 200
+
+# Create
+
+
+test_rand_str = "test" + str(random.randint(0, 10000000))
+
+
+def test_create_user():
+    user = schemas.UserCreate(
+        name=test_rand_str,
+        email=test_rand_str + "@test.com",
+        password="test"
+    )
+    response = client.post("/users", json=user.dict())
+    assert response.status_code == 200
+    assert response.json()["name"] == test_rand_str
+    assert response.json()["email"] == test_rand_str + "@test.com"
+
+
+def test_create_task():
+    rand_int = random.randint(0, 10000000)
+    task = schemas.TaskCreate(
+        user_id=1,
+        name=test_rand_str,
+        order=rand_int
+    )
+    response = client.post("/tasks", json=task.dict())
+    assert response.status_code == 200
+    assert response.json()["name"] == test_rand_str
+    assert response.json()["user_id"] == 1
+    assert response.json()["order"] == rand_int
+
+
+def test_create_run_date():
+    json_data = dict(task_id=1)
+    response = client.post("/rundates", json=json_data)
+    assert response.status_code == 200
+    assert response.json()["date"]  # datetimeは存在するかだけ確認
