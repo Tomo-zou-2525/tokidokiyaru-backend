@@ -2,7 +2,9 @@ import hashlib
 from datetime import datetime
 
 from app.db.database import SessionLocal
-from app.models.models import RunDate, Task, User
+from app.models.run_date import RunDate
+from app.models.task import Task
+from app.models.user import User
 
 db = SessionLocal()
 
