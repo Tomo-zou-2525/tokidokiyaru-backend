@@ -1,5 +1,5 @@
-from database import SessionLocal
-from models import RunDate, Task, User
+from app.db.database import SessionLocal
+from app.models.models import RunDate, Task, User
 
 db = SessionLocal()
 
