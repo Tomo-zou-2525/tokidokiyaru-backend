@@ -2,7 +2,7 @@ import random
 
 from fastapi.testclient import TestClient
 
-from src.sql_app import main, schemas
+from app.sql_app import main, schemas
 
 client = TestClient(main.app)
 
