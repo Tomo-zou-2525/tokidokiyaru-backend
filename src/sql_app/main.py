@@ -11,8 +11,8 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
-@app.get("/test")
-def test():
+@app.get("/sample")
+def sample():
     return {"message": "Hello World"}
 
 
