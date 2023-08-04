@@ -3,13 +3,11 @@ from typing import List
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
-import app.repositories.run_date as run_date_repository
-import app.repositories.task as task_repository
-import app.repositories.user as user_repository
 import app.schemas.schemas as schemas
-from app.db.database import Base, engine, get_db
-
-Base.metadata.create_all(bind=engine)
+from app.db.database import get_db
+from app.repositories.run_date import RunDateRepository
+from app.repositories.task import TaskRepository
+from app.repositories.user import UserRepository
 
 app = FastAPI()
 
@@ -21,26 +19,27 @@ def sample():
 
 # Read
 
-
 @app.get("/users", response_model=List[schemas.User])
 def read_users(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = user_repository.get_users(db=db, skip=skip, limit=limit)
+    repository = UserRepository(db)
+    users = repository.get_users(skip=skip, limit=limit)
     return users
 
 
 @app.get("/tasks", response_model=List[schemas.Task])
 def read_tasks(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    tasks = task_repository.get_tasks(db=db, skip=skip, limit=limit)
+    task_repository = TaskRepository(db)
+    tasks = task_repository.get_tasks(skip=skip, limit=limit)
     return tasks
 
 
 @app.get("/rundates", response_model=List[schemas.RunDate])
 def read_run_dates(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    run_dates = run_date_repository.get_run_dates(
-        db=db, skip=skip, limit=limit)
+    run_date_repository = RunDateRepository(db)
+    run_dates = run_date_repository.get_run_dates(skip=skip, limit=limit)
     return run_dates
 
 # Create
@@ -49,16 +48,19 @@ def read_run_dates(
 @app.post("/users", response_model=schemas.User)
 def create_user(
         user: schemas.UserCreate, db: Session = Depends(get_db)):
-    return user_repository.create_user(db=db, user=user)
+    repository = UserRepository(db)
+
+    return repository.create_user(user=user)
 
 
 @app.post("/tasks", response_model=schemas.Task)
-def create_task(
-        task: schemas.TaskCreate, db: Session = Depends(get_db)):
-    return task_repository.create_task(db=db, task=task)
+def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
+    task_repository = TaskRepository(db)
+    return task_repository.create_task(task)
 
 
 @app.post("/rundates", response_model=schemas.RunDate)
-def create_run_date(
-        run_date: schemas.RunDateCreate, db: Session = Depends(get_db)):
-    return run_date_repository.create_run_date(db=db, run_date=run_date)
+def create_run_date(run_date: schemas.RunDateCreate,
+                    db: Session = Depends(get_db)):
+    run_date_repository = RunDateRepository(db)
+    return run_date_repository.create_run_date(run_date)
