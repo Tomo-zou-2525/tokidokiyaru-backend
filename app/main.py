@@ -19,7 +19,7 @@ def sample():
 
 # Read
 
-@app.get("/users", response_model=List[schemas.User])
+@app.get("/users", response_model=List[schemas.UserResponse])
 def read_users(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     repository = UserRepository(db)
@@ -27,7 +27,7 @@ def read_users(
     return users
 
 
-@app.get("/tasks", response_model=List[schemas.Task])
+@app.get("/tasks", response_model=List[schemas.TaskResponse])
 def read_tasks(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     task_repository = TaskRepository(db)
@@ -35,7 +35,7 @@ def read_tasks(
     return tasks
 
 
-@app.get("/rundates", response_model=List[schemas.RunDate])
+@app.get("/rundates", response_model=List[schemas.RunDateResponse])
 def read_run_dates(
         skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     run_date_repository = RunDateRepository(db)
@@ -45,7 +45,7 @@ def read_run_dates(
 # Create
 
 
-@app.post("/users", response_model=schemas.User)
+@app.post("/users", response_model=schemas.UserResponse)
 def create_user(
         user: schemas.UserCreate, db: Session = Depends(get_db)):
     repository = UserRepository(db)
@@ -53,13 +53,13 @@ def create_user(
     return repository.create_user(user=user)
 
 
-@app.post("/tasks", response_model=schemas.Task)
+@app.post("/tasks", response_model=schemas.TaskResponse)
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     task_repository = TaskRepository(db)
     return task_repository.create_task(task)
 
 
-@app.post("/rundates", response_model=schemas.RunDate)
+@app.post("/rundates", response_model=schemas.RunDateResponse)
 def create_run_date(run_date: schemas.RunDateCreate,
                     db: Session = Depends(get_db)):
     run_date_repository = RunDateRepository(db)

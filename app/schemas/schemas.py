@@ -10,7 +10,7 @@ class UserCreate(BaseModel):
     password: str = Field(max_length=120)
 
 
-class User(UserCreate):
+class UserResponse(UserCreate):
     id: int
 
     class Config:
@@ -23,7 +23,7 @@ class TaskCreate(BaseModel):
     order: int
 
 
-class Task(TaskCreate):
+class TaskResponse(TaskCreate):
     id: int
 
     class Config:
@@ -35,7 +35,7 @@ class RunDateCreate(BaseModel):
     date: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 
-class RunDate(RunDateCreate):
+class RunDateResponse(RunDateCreate):
     id: int
 
     class Config:
