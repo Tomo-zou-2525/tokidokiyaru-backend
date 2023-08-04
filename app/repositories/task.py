@@ -2,7 +2,7 @@
 from sqlalchemy.orm import Session
 
 from app.models.task import Task
-from app.schemas import schemas
+from app.schemas.task import TaskCreate
 
 
 class TaskRepository:
@@ -12,7 +12,7 @@ class TaskRepository:
     def get_tasks(self, skip: int = 0, limit: int = 100):
         return self.db.query(Task).offset(skip).limit(limit).all()
 
-    def create_task(self, task: schemas.TaskCreate):
+    def create_task(self, task: TaskCreate):
         db_task = Task(
             user_id=task.user_id,
             name=task.name,

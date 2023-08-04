@@ -3,7 +3,7 @@ import hashlib
 from sqlalchemy.orm import Session
 
 from app.models.user import User
-from app.schemas import schemas
+from app.schemas.user import UserCreate
 
 
 class UserRepository:
@@ -13,7 +13,7 @@ class UserRepository:
     def get_users(self, skip: int = 0, limit: int = 100):
         return self.db.query(User).offset(skip).limit(limit).all()
 
-    def create_user(self, user: schemas.UserCreate):
+    def create_user(self, user: UserCreate):
         db_user = User(
             name=user.name,
             email=user.email,

@@ -3,7 +3,9 @@ import random
 from fastapi.testclient import TestClient
 
 from app import main
-from app.schemas import schemas
+# from app.schemas.run_date import RunDateCreate
+from app.schemas.task import TaskCreate
+from app.schemas.user import UserCreate
 
 client = TestClient(main.app)
 
@@ -37,7 +39,7 @@ test_rand_str = "test" + str(random.randint(0, 10000000))
 
 
 def test_create_user():
-    user = schemas.UserCreate(
+    user = UserCreate(
         name=test_rand_str,
         email=test_rand_str + "@test.com",
         password="test"
@@ -50,7 +52,7 @@ def test_create_user():
 
 def test_create_task():
     rand_int = random.randint(0, 10000000)
-    task = schemas.TaskCreate(
+    task = TaskCreate(
         user_id=1,
         name=test_rand_str,
         order=rand_int
