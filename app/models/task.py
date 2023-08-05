@@ -1,6 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 
-from ..db.database import Base
+from app.db.database import Base
 
 
 class Task(Base):
