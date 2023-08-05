@@ -1,20 +1,8 @@
-import os
-
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-load_dotenv()
+from app.core.config import SQLALCHEMY_DATABASE_URL
 
-psql_user = os.getenv('PGUSER')
-psql_password = os.getenv('PGPASSWORD')
-psql_server = os.getenv('PGHOST')
-psql_port = os.getenv('PGPORT')
-psql_db = os.getenv('PGDATABASE')
-
-SQLALCHEMY_DATABASE_URL = "postgresql://{0}:{1}@{2}:{3}/{4}".format(
-    psql_user, psql_password, psql_server, psql_port, psql_db
-)
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )
