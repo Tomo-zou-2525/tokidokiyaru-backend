@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
 	"name": "Python 3 & PostgreSQL",
-	"dockerComposeFile": "../compose.yaml",
+	"dockerComposeFile": "compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	// Features to add to the dev container. More info: https://containers.dev/features.
