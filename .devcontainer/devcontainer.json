@@ -32,7 +32,8 @@
 				"Gruntfuggly.todo-tree",
 				"yzhang.markdown-all-in-one",
 				"usernamehw.errorlens",
-				"ms-python.flake8"
+				"ms-python.flake8",
+				"ms-python.autopep8"
 			],
 			"settings": {
 				"hadolint.cliOptions": [
@@ -42,13 +43,9 @@
 				"python.languageServer": "Pylance",
 				"python.analysis.diagnosticMode": "workspace",
 				"python.analysis.typeCheckingMode": "basic",
-				"python.linting.lintOnSave": true,
-				"python.linting.pylintEnabled": false,
-				"python.linting.flake8Enabled": true,
-				"python.linting.flake8Args": [
+				"flake8.Args": [
 					"--max-line-length=150"
 				],
-				"python.formatting.provider": "autopep8",
 				"autoDocstring.docstringFormat": "google",
 				"editor.formatOnSave": true,
 				"editor.codeActionsOnSave": {
