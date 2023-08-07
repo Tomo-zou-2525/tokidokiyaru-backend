@@ -1,4 +1,4 @@
-from app.db.database import SessionLocal
+from app.db.session import SessionLocal
 from app.models.run_date import RunDate
 from app.models.task import Task
 from app.models.user import User
