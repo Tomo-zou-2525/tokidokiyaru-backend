@@ -3,7 +3,7 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.db.database import get_db
+from app.db.session import get_db
 from app.repositories.task import TaskRepository
 from app.schemas.task import TaskCreate, TaskResponse
 
