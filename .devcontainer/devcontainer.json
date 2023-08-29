@@ -43,6 +43,9 @@
 				"python.languageServer": "Pylance",
 				"python.analysis.diagnosticMode": "workspace",
 				"python.analysis.typeCheckingMode": "basic",
+				"lintOnSave": true,
+				"pylintEnabled": false,
+				"flake8Enabled": true,
 				"flake8.Args": [
 					"--max-line-length=150"
 				],
