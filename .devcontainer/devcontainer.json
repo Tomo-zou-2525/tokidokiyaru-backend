@@ -2,23 +2,19 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
 	"name": "Python 3 & PostgreSQL",
-	"dockerComposeFile": "../compose.yaml",
+	"dockerComposeFile": "compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/dhoeric/features/hadolint:1": {},
 		"ghcr.io/lukewiwa/features/shellcheck:0": {}
 	},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// This can be used to network with other containers or the host.
 	// "forwardPorts": [5000, 5432],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip install --user -r requirements.txt",
-
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
@@ -36,18 +32,23 @@
 				"Gruntfuggly.todo-tree",
 				"yzhang.markdown-all-in-one",
 				"usernamehw.errorlens",
-				"ms-python.flake8"
+				"ms-python.flake8",
+				"ms-python.autopep8"
 			],
 			"settings": {
-				"hadolint.cliOptions": ["--no-color"],
+				"hadolint.cliOptions": [
+					"--no-color"
+				],
 				"hadolint.hadolintPath": "/usr/local/bin/hadolint",
 				"python.languageServer": "Pylance",
 				"python.analysis.diagnosticMode": "workspace",
 				"python.analysis.typeCheckingMode": "basic",
-				"python.linting.lintOnSave": true,
-				"python.linting.pylintEnabled": false,
-				"python.linting.flake8Enabled": true,
-				"python.formatting.provider": "autopep8",
+				"lintOnSave": true,
+				"pylintEnabled": false,
+				"flake8Enabled": true,
+				"flake8.Args": [
+					"--max-line-length=150"
+				],
 				"autoDocstring.docstringFormat": "google",
 				"editor.formatOnSave": true,
 				"editor.codeActionsOnSave": {
@@ -60,7 +61,6 @@
 			}
 		}
 	}
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
