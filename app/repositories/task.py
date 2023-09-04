@@ -1,5 +1,5 @@
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from app.models.task import Task
 from app.schemas.task import TaskCreate
@@ -10,7 +10,8 @@ class TaskRepository:
         self.db = db
 
     def get_tasks(self, skip: int = 0, limit: int = 100):
-        return self.db.query(Task).offset(skip).limit(limit).all()
+        return self.db.query(Task).options(
+            joinedload(Task.rundates)).offset(skip).limit(limit).all()
 
     def create_task(self, task: TaskCreate):
         db_task = Task(
