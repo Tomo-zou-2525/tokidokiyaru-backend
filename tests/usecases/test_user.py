@@ -1,8 +1,10 @@
 
-import random
+from faker import Faker
 
 from app.schemas.user import UserCreate
 from tests.test_main import client
+
+fake = Faker('ja_JP')
 
 
 def test_read_users():
@@ -10,16 +12,13 @@ def test_read_users():
     assert response.status_code == 200
 
 
-test_rand_str = "test" + str(random.randint(0, 10000000))
-
-
 def test_create_user():
     user = UserCreate(
-        name=test_rand_str,
-        email=test_rand_str + "@test.com",
+        name=fake.name(),
+        email=fake.email(),
         password="test"
     )
     response = client.post("/users", json=user.dict())
     assert response.status_code == 200
-    assert response.json()["name"] == test_rand_str
-    assert response.json()["email"] == test_rand_str + "@test.com"
+    assert response.json()["name"] == user.name
+    assert response.json()["email"] == user.email

@@ -1,8 +1,11 @@
+from random import randint
 
-import random
+from faker import Faker
 
 from app.schemas.task import TaskCreate
 from tests.test_main import client
+
+fake = Faker('ja_JP')
 
 
 def test_read_tasks():
@@ -10,18 +13,14 @@ def test_read_tasks():
     assert response.status_code == 200
 
 
-test_rand_str = "test" + str(random.randint(0, 10000000))
-
-
 def test_create_task():
-    rand_int = random.randint(0, 10000000)
     task = TaskCreate(
         user_id=1,
-        name=test_rand_str,
-        order=rand_int
+        name=fake.job() + 'の勉強',
+        order=randint(0, 10000000)
     )
     response = client.post("/tasks", json=task.dict())
     assert response.status_code == 200
-    assert response.json()["name"] == test_rand_str
-    assert response.json()["user_id"] == 1
-    assert response.json()["order"] == rand_int
+    assert response.json()["user_id"] == task.user_id
+    assert response.json()["name"] == task.name
+    assert response.json()["order"] == task.order

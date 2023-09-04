@@ -1,14 +1,9 @@
-import random
-
 from tests.test_main import client
 
 
 def test_read_run_dates():
     response = client.get("/rundates")
     assert response.status_code == 200
-
-
-test_rand_str = "test" + str(random.randint(0, 10000000))
 
 
 def test_create_run_date():
