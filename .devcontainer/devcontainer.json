@@ -46,7 +46,7 @@
 				"lintOnSave": true,
 				"pylintEnabled": false,
 				"flake8Enabled": true,
-				"flake8.Args": [
+				"flake8.args": [
 					"--max-line-length=150"
 				],
 				"autoDocstring.docstringFormat": "google",
