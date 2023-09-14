@@ -8,8 +8,9 @@ class UserCreate(BaseModel):
     password: str = Field(max_length=120)
 
 
-class UserResponse(UserCreate):
-    id: int
+class UserResponse(BaseModel):
+    name: str
+    email: str
 
     class Config:
         orm_mode = True

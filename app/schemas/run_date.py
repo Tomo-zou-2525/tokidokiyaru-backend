@@ -8,8 +8,8 @@ class RunDateCreate(BaseModel):
     date: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
 
-class RunDateResponse(RunDateCreate):
-    id: int
+class RunDateResponse(BaseModel):
+    date: datetime.datetime = Field(default_factory=datetime.datetime.now)
 
     class Config:
         orm_mode = True

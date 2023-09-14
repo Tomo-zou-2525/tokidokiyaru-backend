@@ -11,8 +11,10 @@ class TaskCreate(BaseModel):
     order: int
 
 
-class TaskResponse(TaskCreate):
+class TaskResponse(BaseModel):
     id: int
+    name: str = Field(max_length=12)
+    order: int
     rundates: List[RunDateResponse]
 
     class Config:
