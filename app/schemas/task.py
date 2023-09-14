@@ -1,4 +1,8 @@
+from typing import List
+
 from pydantic import BaseModel, Field
+
+from .run_date import RunDateResponse
 
 
 class TaskCreate(BaseModel):
@@ -9,6 +13,7 @@ class TaskCreate(BaseModel):
 
 class TaskResponse(TaskCreate):
     id: int
+    rundates: List[RunDateResponse]
 
     class Config:
         orm_mode = True
