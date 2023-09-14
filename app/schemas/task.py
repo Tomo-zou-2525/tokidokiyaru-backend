@@ -13,9 +13,10 @@ class TaskCreate(BaseModel):
 
 class TaskResponse(BaseModel):
     id: int
-    name: str = Field(max_length=12)
-    order: int
+    user_id: int
+    name: str
     rundates: List[RunDateResponse]
+    order: int
 
     class Config:
         orm_mode = True
