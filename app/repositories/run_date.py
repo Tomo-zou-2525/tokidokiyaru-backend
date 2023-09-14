@@ -9,9 +9,6 @@ class RunDateRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_run_dates(self, skip: int = 0, limit: int = 100):
-        return self.db.query(RunDate).offset(skip).limit(limit).all()
-
     def create_run_date(self, run_date: RunDateCreate):
         db_run_date = RunDate(
             task_id=run_date.task_id,
