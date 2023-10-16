@@ -6,9 +6,9 @@ from app.usecases.task import router as task_router
 from app.usecases.user import router as user_router
 
 app = FastAPI()
-app.include_router(user_router)
-app.include_router(task_router)
-app.include_router(run_date_router)
+app.include_router(user_router, prefix="users")
+app.include_router(task_router, prefix="tasks")
+app.include_router(run_date_router, prefix="rundates")
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,16 +1,21 @@
+from app.schemas.core import BaseSchema
 import datetime
 
-from pydantic import Field
-from app.schemas.core import BaseSchema
 
-
-class RunDateCreate(BaseSchema):
-    task_id: int
-    date: datetime.datetime = Field(default_factory=datetime.datetime.now)
-
-
-class RunDateResponse(BaseSchema):
-    date: datetime.datetime = Field(default_factory=datetime.datetime.now)
+class RunDateSchemaBase(BaseSchema):
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+class RunDateResponse(RunDateSchemaBase):
+    id: int
+    run_at: datetime.datetime
+
+
+class RunDateCreate(RunDateSchemaBase):
+    pass
+
+
+class RunDateUpdate(RunDateSchemaBase):
+    order_num: int

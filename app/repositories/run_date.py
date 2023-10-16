@@ -1,20 +1,19 @@
-
-from sqlalchemy.orm import Session
-
 from app.models.run_date import RunDate
-from app.schemas.run_date import RunDateCreate
+from app.repositories.base import CRUDBase
+from app.schemas.run_date import (
+    RunDateCreate,
+    RunDateUpdate,
+)
 
 
-class RunDateRepository:
-    def __init__(self, db: Session):
-        self.db = db
+class CRUDRunDate(
+    CRUDBase[
+        RunDate,
+        RunDateCreate,
+        RunDateUpdate,
+    ]
+):
+    pass
 
-    def create_run_date(self, run_date: RunDateCreate):
-        db_run_date = RunDate(
-            task_id=run_date.task_id,
-            date=run_date.date
-        )
-        self.db.add(db_run_date)
-        self.db.commit()
-        self.db.refresh(db_run_date)
-        return db_run_date
+
+run_date = CRUDRunDate(model=RunDate)

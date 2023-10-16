@@ -1,18 +1,25 @@
+from typing import Optional
+
 from pydantic import Field
+
 from app.schemas.core import BaseSchema
 
 
-class UserCreate(BaseSchema):
+class UserSchemaBase(BaseSchema):
     name: str = Field(max_length=12)
-    email: str
-    # FIXME: 12文字までの制限にする（今はハッシュ化した12文字以上の値をreturnしている）
-    password: str = Field(max_length=120)
-
-
-class UserResponse(BaseSchema):
-    id: int
-    name: str
-    email: str
+    email: Optional[str] = Field(max_length=255)
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+
+class UserResponse(UserSchemaBase):
+    id: int
+
+
+class UserCreate(UserSchemaBase):
+    password: Optional[str] = Field(max_length=120)
+
+
+class UserUpdate(UserSchemaBase):
+    password: Optional[str] = Field(max_length=120)
