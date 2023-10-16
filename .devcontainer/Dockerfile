@@ -15,3 +15,6 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
    && apt-get update && export DEBIAN_FRONTEND=noninteractive \
    && apt-get -y install --no-install-recommends postgresql-client-15 \
    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y make
+
