@@ -1,17 +1,18 @@
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+from app.schemas.core import BaseSchema
 
-from .run_date import RunDateResponse
+from app.schemas.run_date import RunDateResponse
 
 
-class TaskCreate(BaseModel):
+class TaskCreate(BaseSchema):
     user_id: int
     name: str = Field(max_length=12)
     order: int
 
 
-class TaskResponse(BaseModel):
+class TaskResponse(BaseSchema):
     id: int
     user_id: int
     name: str

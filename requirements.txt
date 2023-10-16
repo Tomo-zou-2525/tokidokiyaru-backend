@@ -4,6 +4,7 @@ click==8.1.3
 fastapi==0.96.0
 flake8==6.0.0
 h11==0.14.0
+humps==23.1.2
 httptools==0.5.0
 idna==3.4
 mccabe==0.7.0
