@@ -14,7 +14,7 @@ dev:
 	@uvicorn app.main:app --reload
 
 db:
-	@mysql -u $(MYSQL_USER) -p$(MYSQL_PASSWORD) $(MYSQL_DATABASE)
+	@PGPASSWORD=$(PGPASSWORD) psql $(PGDATABASE) -U $(PGUSER)
 
 history:
 	@alembic history
