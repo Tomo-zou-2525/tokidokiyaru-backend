@@ -1,24 +1,26 @@
-
 from faker import Faker
 
-from app.schemas.user import UserCreate
 from tests.test_main import client
 
-fake = Faker('ja_JP')
+fake = Faker("ja_JP")
 
-
-def test_read_users():
-    response = client.get("/users")
-    assert response.status_code == 200
+endpoint = "users"
 
 
 def test_create_user():
-    user = UserCreate(
-        name=fake.name(),
-        email=fake.email(),
-        password="test"
+
+    response = client.post(
+        f"/{endpoint}/",
+        json={"name": "テストユーザー", "email": "sample@example.com", "password": "test"},
     )
-    response = client.post("/users", json=user.dict())
-    assert response.status_code == 200
-    assert response.json()["name"] == user.name
-    assert response.json()["email"] == user.email
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert "id" in data
+    id = data["id"]
+
+    response = client.get(f"/{endpoint}/{id}")
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["id"] == id
+    assert data["name"] == "テストユーザー"
+    assert data["email"] == "sample@example.com"
