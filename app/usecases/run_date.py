@@ -24,10 +24,8 @@ def get_run_date(id: int, db: Session = Depends(get_db)) -> RunDate:
 
 
 @router.get("", response_model=List[RunDateResponse])
-def get_run_date_list(
-    db: Session = Depends(get_db), include_hidden: bool = False
-) -> List[RunDate]:
-    run_date_data = run_date.get_list(db=db, include_hidden=include_hidden)
+def get_run_date_list(db: Session = Depends(get_db)) -> List[RunDate]:
+    run_date_data = run_date.get_list(db=db)
 
     return run_date_data
 
@@ -45,7 +43,9 @@ def create_rand_run_date(db: Session = Depends(get_db)) -> RunDate:
 
 
 @router.put("/{id}", response_model=RunDateResponse)
-def update_run_date(id: int, data_in: RunDateUpdate, db: Session = Depends(get_db)) -> RunDate:
+def update_run_date(
+    id: int, data_in: RunDateUpdate, db: Session = Depends(get_db)
+) -> RunDate:
     return run_date.update(db=db, id=id, obj_in=data_in)
 
 

@@ -25,10 +25,8 @@ def get_task(id: int, db: Session = Depends(get_db)) -> Task:
 
 
 @router.get("", response_model=List[TaskResponse])
-def get_task_list(
-    db: Session = Depends(get_db), include_hidden: bool = False
-) -> List[Task]:
-    task_data = task.get_list(db=db, include_hidden=include_hidden)
+def get_task_list(db: Session = Depends(get_db)) -> List[Task]:
+    task_data = task.get_list(db=db)
 
     return task_data
 

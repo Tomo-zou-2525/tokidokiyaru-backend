@@ -25,10 +25,8 @@ def get_user(id: int, db: Session = Depends(get_db)) -> User:
 
 
 @router.get("", response_model=List[UserResponse])
-def get_user_list(
-    db: Session = Depends(get_db), include_hidden: bool = False
-) -> List[User]:
-    user_data = user.get_list(db=db, include_hidden=include_hidden)
+def get_user_list(db: Session = Depends(get_db)) -> List[User]:
+    user_data = user.get_list(db=db)
 
     return user_data
 
