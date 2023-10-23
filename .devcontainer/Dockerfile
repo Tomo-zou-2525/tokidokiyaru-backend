@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/devcontainers/python:0-3.11
 
 ENV PYTHONUNBUFFERED 1
+ENV TZ Asia/Tokyo
 
 # [Optional] If your requirements rarely change, uncomment this section to add them to the image.
-COPY requirements.txt /tmp/pip-tmp/
-RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-   && rm -rf /tmp/pip-tmp
+COPY pyproject.toml poetry.lock ./
+RUN pip install poetry && poetry config virtualenvs.create false && poetry install
 
 # [Optional] Uncomment this section to install additional OS packages.
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

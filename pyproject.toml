@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "bbf-anken-card"
+version = "0.1.0"
+description = ""
+authors = ["Fignny <ryo.sakon@fignny.co.jp>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.2"
+uvicorn = "^0.23.2"
+boto3 = "^1.28.62"
+alembic = "^1.12.0"
+pydantic = "^2.4.2"
+sqlalchemy = "^2.0.21"
+pytest = "^7.4.2"
+faker = "^19.6.2"
+requests = "^2.31.0"
+pyyaml = "^6.0.1"
+pydantic-settings = "^2.0.3"
+flake8 = "^6.1.0"
+black = "^23.9.1"
+isort = "^5.12.0"
+httpx = "^0.25.0"
+pytest-asyncio = "^0.21.1"
+psycopg2 = "^2.9.9"
+click = "^8.1.7"
+h11 = "^0.14.0"
+httptools = "^0.6.1"
+idna = "^3.4"
+mccabe = "^0.7.0"
+pycodestyle = "^2.11.1"
+pyflakes = "^3.1.0"
+python-dotenv = "^1.0.0"
+sniffio = "^1.3.0"
+typing-extensions = "^4.8.0"
+uvloop = "^0.19.0"
+watchfiles = "^0.21.0"
+websockets = "^12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
