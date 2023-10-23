@@ -23,7 +23,7 @@ class CRUDBase(
         self.model = model
 
     def get(self, db: Session, id: int | str) -> Optional[ModelType]:
-        return db.query(self.model).first()
+        return db.query(self.model).filter(self.model.id == id).first()
 
     def get_list(self, db: Session) -> List[ModelType]:
         query = db.query(self.model)
