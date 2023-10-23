@@ -1,8 +1,4 @@
-from faker import Faker
-
 from tests.test_main import client
-
-fake = Faker("ja_JP")
 
 endpoint = "users"
 
