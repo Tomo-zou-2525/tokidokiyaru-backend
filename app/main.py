@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.usecases.run_date import router as run_date_router
 from app.usecases.task import router as task_router
 from app.usecases.user import router as user_router
+from app.db.seeder import router as seeder_router
 
 app = FastAPI()
 
@@ -24,3 +25,4 @@ def sample():
 app.include_router(user_router, prefix="/users")
 app.include_router(task_router, prefix="/tasks")
 app.include_router(run_date_router, prefix="/rundates")
+app.include_router(seeder_router)
