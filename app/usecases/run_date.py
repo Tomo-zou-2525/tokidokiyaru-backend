@@ -37,7 +37,7 @@ def create_run_date(data_in: RunDateCreate, db: Session = Depends(get_db)) -> Ru
 
 @router.post("/rand", response_model=RunDateResponse)
 def create_rand_run_date(db: Session = Depends(get_db)) -> RunDate:
-    data_in = RunDateCreate()
+    data_in = RunDateCreate(task_id=1)
 
     return run_date.create(db=db, obj_in=data_in)
 

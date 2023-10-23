@@ -4,6 +4,7 @@ from pydantic import ConfigDict
 
 
 class RunDateSchemaBase(BaseSchema):
+    task_id: int
 
     model_config = ConfigDict(from_attributes=True)
 
