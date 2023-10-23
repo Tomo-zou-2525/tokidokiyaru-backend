@@ -1,4 +1,4 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class DBSettings(BaseSettings):
@@ -8,7 +8,7 @@ class DBSettings(BaseSettings):
     PGUSER: str
     PGPASSWORD: str
 
-    class Config:
+    class ConfigDict:
         case_sensitive = True
 
 

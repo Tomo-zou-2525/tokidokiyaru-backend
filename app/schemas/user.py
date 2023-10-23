@@ -1,16 +1,14 @@
 from typing import Optional
 
-from pydantic import Field
-
 from app.schemas.core import BaseSchema
+from pydantic import Field, ConfigDict
 
 
 class UserSchemaBase(BaseSchema):
     name: str = Field(max_length=12)
     email: Optional[str] = Field(max_length=255)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserResponse(UserSchemaBase):

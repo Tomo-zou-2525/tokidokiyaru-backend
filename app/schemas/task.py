@@ -1,4 +1,5 @@
-from pydantic import Field
+from pydantic import Field, ConfigDict
+
 from app.schemas.core import BaseSchema
 
 
@@ -6,8 +7,7 @@ class TaskSchemaBase(BaseSchema):
     user_id: int
     name: str = Field(max_length=12)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class TaskResponse(TaskSchemaBase):
