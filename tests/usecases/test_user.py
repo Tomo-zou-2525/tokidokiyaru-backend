@@ -4,7 +4,6 @@ endpoint = "users"
 
 
 def test_create_user():
-
     response = client.post(
         f"/{endpoint}/",
         json={"name": "テストユーザー", "email": "sample@example.com", "password": "test"},
