@@ -13,7 +13,8 @@ class CRUDTask(
         TaskUpdate,
     ]
 ):
-    pass
+    def get_with_dones(self, db, id):
+        return db.query(self.model).filter(self.model.id == id).join(Task.dones).first()
 
 
 task = CRUDTask(model=Task)

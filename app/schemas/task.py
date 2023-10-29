@@ -14,7 +14,7 @@ class TaskResponse(TaskSchemaBase):
     user_id: int
     name: str = Field(max_length=20)
     order_num: int
-    done_at: List[DoneResponse]
+    dones: List[DoneResponse]
 
 
 class TaskCreate(TaskSchemaBase):

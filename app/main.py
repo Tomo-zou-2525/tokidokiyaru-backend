@@ -24,5 +24,5 @@ def sample():
 
 app.include_router(user_router, prefix="/users")
 app.include_router(task_router, prefix="/tasks")
-app.include_router(done_router, prefix="/dones")
+app.include_router(done_router, prefix="/tasks/{task_id}/done")
 app.include_router(seeder_router)
