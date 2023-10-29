@@ -1,8 +1,8 @@
 """init
 
-Revision ID: b89add91c0c1
+Revision ID: f0a360160370
 Revises: 
-Create Date: 2023-10-29 19:43:00.274345
+Create Date: 2023-10-30 01:00:33.980419
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b89add91c0c1'
+revision = 'f0a360160370'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,7 +32,7 @@ def upgrade() -> None:
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), server_default='', nullable=False),
     sa.Column('order_num', sa.Integer(), server_default='0', nullable=False),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('dones',
@@ -40,7 +40,7 @@ def upgrade() -> None:
     sa.Column('task_id', sa.Integer(), nullable=False),
     sa.Column('done_at', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.Column('order_num', sa.Integer(), server_default='0', nullable=False),
-    sa.ForeignKeyConstraint(['task_id'], ['tasks.id'], ),
+    sa.ForeignKeyConstraint(['task_id'], ['tasks.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
