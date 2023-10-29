@@ -1,7 +1,5 @@
 from tests.test_main import client
 
-endpoint = "tasks"
-
 
 def test_create_task():
     response = client.post(
@@ -15,7 +13,7 @@ def test_create_task():
     user_id = data["id"]
 
     response = client.post(
-        f"/{endpoint}/",
+        f"/users/{user_id}/tasks/",
         json={"userId": user_id, "name": "テストタスク"},
     )
     assert response.status_code == 200, response.text
@@ -23,7 +21,7 @@ def test_create_task():
     assert "id" in data
     task_id = data["id"]
 
-    response = client.get(f"/{endpoint}/{task_id}")
+    response = client.get(f"/users/{user_id}/tasks/{task_id}")
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["id"] == task_id
