@@ -17,18 +17,14 @@ from app.schemas.task import (
 router = APIRouter()
 
 
-@router.get("/{id}", response_model=TaskResponse)
-def get_task(id: int, db: Session = Depends(get_db)) -> Task:
-    task_data = task.get(id=id, db=db)
-
-    return task_data
+@router.get("/{task_id}", response_model=TaskResponse)
+def get_task_with_dones(task_id: int, db: Session = Depends(get_db)) -> Task:
+    return task.get_with_dones(task_id=task_id, db=db)
 
 
 @router.get("", response_model=List[TaskResponse])
-def get_task_list(db: Session = Depends(get_db)) -> List[Task]:
-    task_data = task.get_list(db=db)
-
-    return task_data
+def get_user_task_list_with_dones(user_id: int, db: Session = Depends(get_db)) -> List[Task]:
+    return task.get_user_task_list_with_dones(user_id=user_id, db=db)
 
 
 @router.post("", response_model=TaskResponse)
