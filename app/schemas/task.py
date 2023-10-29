@@ -24,5 +24,5 @@ class TaskCreate(TaskSchemaBase):
 
 class TaskUpdate(TaskSchemaBase):
     id: int
-    name: str | None = Field(max_length=20)
-    order_num: int | None
+    name: str | None = Field(None, max_length=20)
+    order_num: int | None = Field(None)

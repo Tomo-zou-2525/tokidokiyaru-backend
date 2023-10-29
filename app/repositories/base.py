@@ -46,8 +46,7 @@ class CRUDBase(
             db.query(self.model).filter(self.model.id == id).first()
         )
         target_dict = jsonable_encoder(target, by_alias=False)
-
-        update_dict = obj_in.dict(exclude_unset=True)
+        update_dict = obj_in.model_dump(exclude_unset=True)
         for field in target_dict:
             if field in update_dict:
                 setattr(target, field, update_dict[field])
