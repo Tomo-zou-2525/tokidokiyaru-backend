@@ -28,7 +28,7 @@ class TaskUpdate(TaskSchemaBase):
 # from pydantic import Field
 # from app.schemas.core import BaseSchema
 
-# from app.schemas.run_date import RunDateResponse
+# from app.schemas.done import DoneResponse
 
 
 # class TaskCreate(BaseSchema):
@@ -41,7 +41,7 @@ class TaskUpdate(TaskSchemaBase):
 #     id: int
 #     user_id: int
 #     name: str
-#     ran_at: List[RunDateResponse]
+#     ran_at: List[DoneResponse]
 #     order: int
 
 #     class Config:

@@ -1,9 +1,9 @@
 from tests.test_main import client
 
-endpoint = "rundates"
+endpoint = "dones"
 
 
-def test_create_rundate():
+def test_create_done():
     # ユーザー作成
     response = client.post(
         "/users/",
@@ -32,4 +32,4 @@ def test_create_rundate():
     data = response.json()
     assert "id" in data
     assert data["taskId"] == task_id
-    assert "runAt" in data
+    assert "doneAt" in data

@@ -43,6 +43,9 @@ resetmigrations:
 	@alembic revision --autogenerate -m "init"
 	@alembic upgrade head
 
+seed:
+	@curl -X POST http://127.0.0.1:8000/seeder
+
 # devcontainerを使っていない人用
 # format:
 # 	@black --line-length 120 app/*

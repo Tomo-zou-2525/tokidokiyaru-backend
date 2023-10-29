@@ -3,20 +3,20 @@ import datetime
 from pydantic import ConfigDict
 
 
-class RunDateSchemaBase(BaseSchema):
+class DoneSchemaBase(BaseSchema):
     task_id: int
 
     model_config = ConfigDict(from_attributes=True)
 
 
-class RunDateResponse(RunDateSchemaBase):
+class DoneResponse(DoneSchemaBase):
     id: int
-    run_at: datetime.datetime
+    done_at: datetime.datetime
 
 
-class RunDateCreate(RunDateSchemaBase):
+class DoneCreate(DoneSchemaBase):
     pass
 
 
-class RunDateUpdate(RunDateSchemaBase):
+class DoneUpdate(DoneSchemaBase):
     order_num: int

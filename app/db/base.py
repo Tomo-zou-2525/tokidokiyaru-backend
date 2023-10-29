@@ -2,6 +2,6 @@
 # imported by Alembic
 
 from app.db.base_class import Base  # noqa
-from app.models.run_date import RunDate  # noqa
+from app.models.done import Done  # noqa
 from app.models.task import Task  # noqa
 from app.models.user import User  # noqa
