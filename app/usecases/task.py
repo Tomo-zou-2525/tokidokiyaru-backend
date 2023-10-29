@@ -1,5 +1,3 @@
-from typing import List
-
 from faker import Faker
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -22,8 +20,8 @@ def get_task(task_id: int, db: Session = Depends(get_db)) -> Task:
     return task.get(id=task_id, db=db)
 
 
-@router.get("", response_model=List[TaskResponse])
-def get_user_task_list(user_id: int, db: Session = Depends(get_db)) -> List[Task]:
+@router.get("", response_model=list[TaskResponse])
+def get_user_task_list(user_id: int, db: Session = Depends(get_db)) -> list[Task]:
     return task.get_user_task_list(user_id=user_id, db=db)
 
 

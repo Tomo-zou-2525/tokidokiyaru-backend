@@ -1,4 +1,4 @@
-from typing import Generic, List, Optional, Type, TypeVar
+from typing import Generic, Type, TypeVar
 
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -22,10 +22,10 @@ class CRUDBase(
     def __init__(self, model: Type[ModelType]):
         self.model = model
 
-    def get(self, db: Session, id: int | str) -> Optional[ModelType]:
+    def get(self, db: Session, id: int | str) -> ModelType | None:
         return db.query(self.model).filter(self.model.id == id).first()
 
-    def get_list(self, db: Session) -> List[ModelType]:
+    def get_list(self, db: Session) -> list[ModelType]:
         query = db.query(self.model)
 
         return query.all()
