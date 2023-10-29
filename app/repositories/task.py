@@ -13,11 +13,8 @@ class CRUDTask(
         TaskUpdate,
     ]
 ):
-    def get_with_dones(self, db, task_id):
-        return db.query(self.model).filter(self.model.id == task_id).join(Task.dones).first()
-
-    def get_user_task_list_with_dones(self, db, user_id):
-        return db.query(self.model).filter(self.model.user_id == user_id).join(Task.dones).all()
+    def get_user_task_list(self, db, user_id):
+        return db.query(self.model).filter(self.model.user_id == user_id).all()
 
 
 task = CRUDTask(model=Task)

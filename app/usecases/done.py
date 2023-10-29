@@ -17,10 +17,10 @@ router = APIRouter()
 @router.post("", response_model=TaskResponse)
 def create_done(data_in: DoneCreate, db: Session = Depends(get_db)) -> Task:
     done.create(db=db, obj_in=data_in)
-    return task.get_with_dones(task_id=data_in.task_id, db=db)
+    return task.get(id=data_in.task_id, db=db)
 
 
 @router.delete("/{done_id}", response_model=TaskResponse)
 def hard_delete_done(task_id: int, done_id: int, db: Session = Depends(get_db)) -> Task:
     done.hard_delete(db=db, id=done_id)
-    return task.get_with_dones(task_id=task_id, db=db)
+    return task.get(id=task_id, db=db)

@@ -18,13 +18,13 @@ router = APIRouter()
 
 
 @router.get("/{task_id}", response_model=TaskResponse)
-def get_task_with_dones(task_id: int, db: Session = Depends(get_db)) -> Task:
-    return task.get_with_dones(task_id=task_id, db=db)
+def get_task(task_id: int, db: Session = Depends(get_db)) -> Task:
+    return task.get(id=task_id, db=db)
 
 
 @router.get("", response_model=List[TaskResponse])
-def get_user_task_list_with_dones(user_id: int, db: Session = Depends(get_db)) -> List[Task]:
-    return task.get_user_task_list_with_dones(user_id=user_id, db=db)
+def get_user_task_list(user_id: int, db: Session = Depends(get_db)) -> List[Task]:
+    return task.get_user_task_list(user_id=user_id, db=db)
 
 
 @router.post("", response_model=TaskResponse)
@@ -43,11 +43,11 @@ def create_rand_task(db: Session = Depends(get_db)) -> Task:
     return task.create(db=db, obj_in=data_in)
 
 
-@router.put("/{id}", response_model=TaskResponse)
-def update_task(id: int, data_in: TaskUpdate, db: Session = Depends(get_db)) -> Task:
-    return task.update(db=db, id=id, obj_in=data_in)
+@router.put("/{task_id}", response_model=TaskResponse)
+def update_task(task_id: int, data_in: TaskUpdate, db: Session = Depends(get_db)) -> Task:
+    return task.update(db=db, id=task_id, obj_in=data_in)
 
 
-@router.delete("/{id}", response_model=TaskResponse)
-def hard_delete_task(id: int, db: Session = Depends(get_db)) -> Task:
-    return task.hard_delete(db=db, id=id)
+@router.delete("/{task_id}", response_model=TaskResponse)
+def hard_delete_task(task_id: int, db: Session = Depends(get_db)) -> Task:
+    return task.hard_delete(db=db, id=task_id)
