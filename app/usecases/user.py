@@ -1,4 +1,3 @@
-from faker import Faker
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -31,18 +30,6 @@ def get_user_list(db: Session = Depends(get_db)) -> list[User]:
 
 @router.post("", response_model=UserResponse)
 def create_user(data_in: UserCreate, db: Session = Depends(get_db)) -> User:
-    return user.create(db=db, obj_in=data_in)
-
-
-@router.post("/rand", response_model=UserResponse)
-def create_rand_user(db: Session = Depends(get_db)) -> User:
-    fake = Faker("ja_JP")
-    data_in = UserCreate(
-        email=fake.email(),
-        name=fake.name(),
-        password="test",
-    )
-
     return user.create(db=db, obj_in=data_in)
 
 

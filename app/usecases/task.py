@@ -1,4 +1,3 @@
-from faker import Faker
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -27,17 +26,6 @@ def get_user_task_list(user_id: int, db: Session = Depends(get_db)) -> list[Task
 
 @router.post("", response_model=TaskResponse)
 def create_task(data_in: TaskCreate, db: Session = Depends(get_db)) -> Task:
-    return task.create(db=db, obj_in=data_in)
-
-
-@router.post("/rand", response_model=TaskResponse)
-def create_rand_task(db: Session = Depends(get_db)) -> Task:
-    fake = Faker("ja_JP")
-    data_in = TaskCreate(
-        user_id=1,
-        name=fake.job() + "の勉強",
-    )
-
     return task.create(db=db, obj_in=data_in)
 
 
