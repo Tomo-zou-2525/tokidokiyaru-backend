@@ -34,6 +34,7 @@ def update_task(task_id: int, data_in: TaskUpdate, db: Session = Depends(get_db)
     return task.update(db=db, id=task_id, obj_in=data_in)
 
 
-@router.delete("/{task_id}", response_model=TaskResponse)
-def hard_delete_task(task_id: int, db: Session = Depends(get_db)) -> Task:
-    return task.hard_delete(db=db, id=task_id)
+@router.delete("/{task_id}")
+def hard_delete_task(task_id: int, db: Session = Depends(get_db)) -> str:
+    task.hard_delete(db=db, id=task_id)
+    return "Task deleted"

@@ -10,7 +10,6 @@ class TaskSchemaBase(BaseSchema):
 
 class TaskResponse(TaskSchemaBase):
     id: int
-    user_id: int
     name: str = Field(max_length=20, examples=["タスクタスク"])
     order_num: int
     dones: list[DoneResponse]
