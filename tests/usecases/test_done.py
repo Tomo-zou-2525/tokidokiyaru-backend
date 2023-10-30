@@ -1,5 +1,7 @@
 from tests.test_main import client
 
+endpoint = 'dones'
+
 
 def test_create_done():
     # ユーザー作成
@@ -14,7 +16,7 @@ def test_create_done():
     user_id = data["id"]
     # タスク作成
     response = client.post(
-        "/users/{user_id}/tasks/",
+        "/tasks/",
         json={"userId": user_id, "name": "テストタスク"},
     )
     assert response.status_code == 200, response.text
@@ -23,7 +25,7 @@ def test_create_done():
     task_id = data["id"]
     # 実施日作成
     response = client.post(
-        f"/users/{user_id}/tasks/{task_id}/done/",
+        f"/{endpoint}/",
         json={"taskId": task_id},
     )
     assert response.status_code == 200, response.text
