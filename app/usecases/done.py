@@ -20,7 +20,7 @@ def create_done(data_in: DoneCreate, db: Session = Depends(get_db)) -> Task:
     return task.get(id=data_in.task_id, db=db)
 
 
-@router.delete("/{done_id}", response_model=TaskResponse)
-def hard_delete_done(task_id: int, done_id: int, db: Session = Depends(get_db)) -> Task:
+@router.delete("/{done_id}")
+def hard_delete_done(done_id: int, db: Session = Depends(get_db)) -> str:
     done.hard_delete(db=db, id=done_id)
-    return task.get(id=task_id, db=db)
+    return "Done deleted"
