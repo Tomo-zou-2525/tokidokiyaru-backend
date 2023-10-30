@@ -19,5 +19,5 @@ app.add_middleware(
 
 app.include_router(user_router, prefix="/users")
 app.include_router(task_router, prefix="/tasks")
-app.include_router(done_router, prefix="/done")
+app.include_router(done_router, prefix="/dones")
 app.include_router(seeder_router)
