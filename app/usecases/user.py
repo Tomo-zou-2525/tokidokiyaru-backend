@@ -21,13 +21,6 @@ def get_user(id: int, db: Session = Depends(get_db)) -> User:
     return user_data
 
 
-@router.get("", response_model=list[UserResponse])
-def get_user_list(db: Session = Depends(get_db)) -> list[User]:
-    user_data = user.get_list(db=db)
-
-    return user_data
-
-
 @router.post("", response_model=UserResponse)
 def create_user(data_in: UserCreate, db: Session = Depends(get_db)) -> User:
     return user.create(db=db, obj_in=data_in)
@@ -36,8 +29,3 @@ def create_user(data_in: UserCreate, db: Session = Depends(get_db)) -> User:
 @router.put("/{id}", response_model=UserResponse)
 def update_user(id: int, data_in: UserUpdate, db: Session = Depends(get_db)) -> User:
     return user.update(db=db, id=id, obj_in=data_in)
-
-
-@router.delete("/{id}", response_model=UserResponse)
-def hard_delete_user(id: int, db: Session = Depends(get_db)) -> User:
-    return user.hard_delete(db=db, id=id)
