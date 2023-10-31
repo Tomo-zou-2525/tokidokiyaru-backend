@@ -1,11 +1,13 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, String
+from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
+from app.models.base import ModelBase
 
 
-class User(Base):
+class User(Base, ModelBase):
     __tablename__ = "users"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    email = Column(String, unique=True, nullable=True, index=True)
+    name = Column(String(255), nullable=False, server_default="")
+    email = Column(String(255), unique=True, nullable=True)
     password = Column(String, nullable=True)
+    tasks = relationship("Task", back_populates="user", cascade="all")

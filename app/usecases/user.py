@@ -1,26 +1,31 @@
-from typing import List
-
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.repositories.user import UserRepository
-from app.schemas.user import UserCreate, UserResponse
+from app.models.user import User
+from app.repositories.user import user
+from app.schemas.user import (
+    UserCreate,
+    UserResponse,
+    UserUpdate,
+)
+
 
 router = APIRouter()
 
 
-@router.get("/users", response_model=List[UserResponse])
-def read_users(
-        skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    repository = UserRepository(db)
-    users = repository.get_users(skip=skip, limit=limit)
-    return users
+@router.get("/{id}", response_model=UserResponse)
+def get_user(id: int, db: Session = Depends(get_db)) -> User:
+    user_data = user.get(id=id, db=db)
+
+    return user_data
 
 
-@router.post("/users", response_model=UserResponse)
-def create_user(
-        user: UserCreate, db: Session = Depends(get_db)):
-    repository = UserRepository(db)
+@router.post("", response_model=UserResponse)
+def create_user(data_in: UserCreate, db: Session = Depends(get_db)) -> User:
+    return user.create(db=db, obj_in=data_in)
 
-    return repository.create_user(user=user)
+
+@router.put("/{id}", response_model=UserResponse)
+def update_user(id: int, data_in: UserUpdate, db: Session = Depends(get_db)) -> User:
+    return user.update(db=db, id=id, obj_in=data_in)

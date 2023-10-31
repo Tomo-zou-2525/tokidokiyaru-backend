@@ -1,25 +1,21 @@
-
-import random
-
-from app.schemas.user import UserCreate
 from tests.test_main import client
 
-
-def test_read_users():
-    response = client.get("/users")
-    assert response.status_code == 200
-
-
-test_rand_str = "test" + str(random.randint(0, 10000000))
+endpoint = "users"
 
 
 def test_create_user():
-    user = UserCreate(
-        name=test_rand_str,
-        email=test_rand_str + "@test.com",
-        password="test"
+    response = client.post(
+        f"/{endpoint}/",
+        json={"name": "テストユーザー", "email": "sample@example.com", "password": "test"},
     )
-    response = client.post("/users", json=user.dict())
-    assert response.status_code == 200
-    assert response.json()["name"] == test_rand_str
-    assert response.json()["email"] == test_rand_str + "@test.com"
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert "id" in data
+    id = data["id"]
+
+    response = client.get(f"/{endpoint}/{id}")
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["id"] == id
+    assert data["name"] == "テストユーザー"
+    assert data["email"] == "sample@example.com"

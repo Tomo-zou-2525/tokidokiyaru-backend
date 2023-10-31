@@ -1,15 +1,23 @@
-from pydantic import BaseModel, Field
+from app.schemas.core import BaseSchema
+from pydantic import Field, ConfigDict
 
 
-class UserCreate(BaseModel):
-    name: str = Field(max_length=12)
-    email: str
-    # FIXME: 12文字までの制限にする（今はハッシュ化した12文字以上の値をreturnしている）
-    password: str = Field(max_length=120)
+class UserSchemaBase(BaseSchema):
+    name: str = Field(max_length=12, examples=["テストユーザー"])
+    email: str = Field(max_length=255, examples=["sample@example.com"])
+
+    model_config = ConfigDict(from_attributes=True)
 
 
-class UserResponse(UserCreate):
+class UserResponse(UserSchemaBase):
     id: int
 
-    class Config:
-        orm_mode = True
+
+class UserCreate(UserSchemaBase):
+    password: str | None = Field(None, max_length=120)
+
+
+class UserUpdate(UserSchemaBase):
+    name: str | None = Field(None, max_length=12, examples=["テストユーザー"])
+    email: str | None = Field(None, max_length=255, examples=["sample@example.com"])
+    password: str | None = Field(None, max_length=120)

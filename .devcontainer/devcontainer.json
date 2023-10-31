@@ -20,44 +20,46 @@
 		"vscode": {
 			"extensions": [
 				"timonwong.shellcheck",
-				"exiasr.hadolint",
 				"ms-azuretools.vscode-docker",
 				"GitHub.copilot",
 				"GitHub.vscode-github-actions",
 				"donjayamanne.githistory",
-				"ms-python.python",
 				"njpwerner.autodocstring",
-				"ms-python.vscode-pylance",
-				"ms-python.isort",
 				"Gruntfuggly.todo-tree",
 				"yzhang.markdown-all-in-one",
+				"ms-vscode.makefile-tools",
 				"usernamehw.errorlens",
+				"ms-python.vscode-pylance",
 				"ms-python.flake8",
-				"ms-python.autopep8"
+				"ms-python.black-formatter"
 			],
 			"settings": {
-				"hadolint.cliOptions": [
-					"--no-color"
-				],
-				"hadolint.hadolintPath": "/usr/local/bin/hadolint",
 				"python.languageServer": "Pylance",
 				"python.analysis.diagnosticMode": "workspace",
 				"python.analysis.typeCheckingMode": "basic",
 				"lintOnSave": true,
 				"pylintEnabled": false,
 				"flake8Enabled": true,
-				"flake8.Args": [
-					"--max-line-length=150"
+				"flake8.args": [
+					"--max-line-length=120"
 				],
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.formatOnSave": true
+				},
+				// 下記を有効にするとなぜか自動整形が効かなくなるのでコメントアウト
+				// "black-formatter.args": ["--ignore=E501"],
 				"autoDocstring.docstringFormat": "google",
-				"editor.formatOnSave": true,
 				"editor.codeActionsOnSave": {
 					"source.organizeImports": true
 				},
 				"editor.rulers": [
 					150
 				],
-				"files.insertFinalNewline": true
+				"files.insertFinalNewline": true,
+				"python.analysis.ignore": [
+					"alembic/versions/"
+				]
 			}
 		}
 	}
