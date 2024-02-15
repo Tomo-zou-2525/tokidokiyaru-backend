@@ -16,7 +16,6 @@ class TaskResponse(TaskSchemaBase):
 
 
 class TaskCreate(TaskSchemaBase):
-    user_id: int
     name: str = Field(max_length=20, examples=["タスクタスク"])
 
 
