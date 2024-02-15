@@ -14,14 +14,14 @@ from app.schemas.task import (
 router = APIRouter()
 
 
-@router.get("", response_model=list[TaskResponse])
-def get_task_list( db: Session = Depends(get_db)) -> list[Task]:
-    return task.get_task_list(db=db)
-
-
 @router.get("/{task_id}", response_model=TaskResponse)
 def get_task(task_id: int, db: Session = Depends(get_db)) -> Task:
     return task.get(id=task_id, db=db)
+
+
+@router.get("", response_model=list[TaskResponse])
+def get_user_task_list(user_id: int, db: Session = Depends(get_db)) -> list[Task]:
+    return task.get_user_task_list(user_id=user_id, db=db)
 
 
 @router.post("", response_model=TaskResponse)

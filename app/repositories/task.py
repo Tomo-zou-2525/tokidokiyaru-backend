@@ -13,8 +13,8 @@ class CRUDTask(
         TaskUpdate,
     ]
 ):
-    def get_task_list(self, db):
-        return db.query(self.model).all()
+    def get_user_task_list(self, db, user_id):
+        return db.query(self.model).filter(self.model.user_id == user_id).all()
 
 
 task = CRUDTask(model=Task)

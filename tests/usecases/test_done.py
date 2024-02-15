@@ -4,10 +4,20 @@ endpoint = 'dones'
 
 
 def test_create_done():
+    # ユーザー作成
+    response = client.post(
+        "/users/",
+        json={"name": "テストユーザー３",
+              "email": "sample3@example.com", "password": "test3"},
+    )
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert "id" in data
+    user_id = data["id"]
     # タスク作成
     response = client.post(
         "/tasks/",
-        json={"name": "テストタスク"},
+        json={"userId": user_id, "name": "テストタスク"},
     )
     assert response.status_code == 200, response.text
     data = response.json()

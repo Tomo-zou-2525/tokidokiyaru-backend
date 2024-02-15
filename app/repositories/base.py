@@ -26,17 +26,9 @@ class CRUDBase(
         return db.query(self.model).filter(self.model.id == id).first()
 
     def get_list(self, db: Session) -> list[ModelType]:
-        print('aaaaaa')
-        print('aaaaaa')
-        print('aaaaaa')
-        print('aaaaaa')
-        print(self.model)
-        
-        # db.query(self.model).filter(self.model.user_id == user_id).all()
-        
-        
-        return db.query(self.model).filter(self.model.id == 1).all()
-        # return db.query(self.model).all()
+        query = db.query(self.model)
+
+        return query.all()
 
     def create(self, db: Session, obj_in: CreateSchemaType) -> ModelType:
         # by_alias=Falseにしないとalias側(CamelCase)が採用されてしまう
